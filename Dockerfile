@@ -25,22 +25,24 @@ RUN pip3 --no-cache-dir install --upgrade \
     jupyter \
     matplotlib \
     numpy \
-    pandas
+    pandas \
+    sklearn \
+    xgboost
 
 # Open up ports for Jupyter
 EXPOSE 7745 
 
-# Create a project directory in the container
-RUN mkdir ds
+# Create a project directory structure in the container
+RUN mkdir project 
 
 # Set bash as the default shell
 ENV SHELL=/bin/bash
 
 # Set the project directory up for being linked to a dir on the system
-VOLUME /ds
+VOLUME /project
 
 # Change workdir to the project dir
-WORKDIR /ds
+WORKDIR /project
 
 # Add the shell script for running the Jupyter server
 ADD run_jupyter.sh /bin/run_jupyter.sh
